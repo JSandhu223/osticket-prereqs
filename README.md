@@ -146,7 +146,7 @@ To shut off the apache web server, we can run
 
 `sudo systemctl stop apache2`
 
-With Apache installed, we can host osTicket and allow users to use the service through the web.
+With Apache installed, we can host osTicket and allow users to use the service through their web browser.
 
 <h3>Part 4 - Installing MariaDB</h3>
 
