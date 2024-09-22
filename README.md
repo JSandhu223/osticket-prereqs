@@ -111,7 +111,7 @@ When the VM has restarted, log in to your account created during the installatio
 
 <h3>Part 2 - Checking Updates</h3>
 
-Before installing any applications, it is best practice to check for updates for packages. Note that during installation we created a root user, which means our user account we logged in with doesn't have `sudo` permissions. To add ourselves to the list of `sudoers`, enter super user mode in the `Terminal` and enter the command `su`. Then navigate to `/etc`.
+Before installing any applications, it is best practice to check for updates for packages. Note that if you created the root user during installation we created a root user, our user account we logged in with won't have `sudo` permissions. To add ourselves to the list of `sudoers`, enter super user mode in the `Terminal` and enter the command `su`. Then navigate to `/etc`.
 
 <img src="images/Add_Sudoer_1.png" height="60%" width="60%" />
 
@@ -153,3 +153,13 @@ With Apache installed, we can host osTicket and allow users to use the service t
 We need a SQL database server to store information like user accounts, admin accounts, ticket information, etc. We can install MariaDB, as this is the most compatible version of the default MySQL database server that runs on Debian. To install MariaDB, run
 
 `sudo apt install mariadb-server`
+
+<h3>Part 4 - Installing PHP</h3>
+
+PHP will be used to display content to the end-user and process requests to the database server. To install PHP and its necessary dependencies, we can run
+
+`sudo apt install php libapache2-mod-php php-mysql`
+
+To confirm that PHP was installed, run `php -v` to see the version of PHP. As of this tutorial, the version is 8.2.20.
+
+<img src="images/PHP_VersionCheck.png" height="60%" width="60%" />
