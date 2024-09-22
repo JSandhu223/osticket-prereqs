@@ -108,3 +108,18 @@ Once this step has finished, you will be greeted with this screen indicating the
 When the VM has restarted, log in to your account created during the installation wizard. Welcome to Debian!
 
 <img src="images/Debian_Desktop.png" height="75%" width="75%" />
+
+<h3>Part 2 - Checking Updates</h3>
+
+Before installing any applications, it is best practice to check for updates for packages. Note that during installation we created a root user, which means our user account we logged in with doesn't have `sudo` permissions. To add ourselves to the list of `sudoers`, enter super user mode in the `Terminal` and enter the command `su`. Then navigate to `/etc`.
+
+<img src="images/Add_Sudoer_1.png" height="60%" width="60%" />
+
+Then add your username to the file `sudoers`. Note that you may need to change file permissions to allow write access! The file should looks as follows:
+
+<img src="images/Add_Sudoer_2.png" height="60%" width="60%" />
+
+We can now run with sudo permissions! Now, run `sudo apt update` to check for any upgrades. Then run `sudo apt upgrade` to upgrade the any outdated packages.
+
+<h3>Part 3 - Installing Apache Web Server</h3>
+
