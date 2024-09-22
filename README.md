@@ -123,3 +123,31 @@ We can now run with sudo permissions! Now, run `sudo apt update` to check for an
 
 <h3>Part 3 - Installing Apache Web Server</h3>
 
+To install Apache, run
+
+`sudo apt install apache2`
+
+Once installed, we can enable and start the apache web server
+
+`sudo systemctl enable apache2`
+`sudo systemctl start apache2`
+
+To view the status of apache, we can run
+
+`sudo systemctl status apache2`
+
+For troubleshooting purposes, we can restart apache by running
+
+`sudo systemctl restart apache2`
+
+To shut off the apache web server, we can run
+
+`sudo systemctl stop apache2`
+
+With Apache installed, we can host osTicket and allow users to use the service through the web.
+
+<h3>Part 4 - Installing MariaDB</h3>
+
+We need a SQL database server to store information like user accounts, admin accounts, ticket information, etc. We can install MariaDB, as this is the most compatible version of the default MySQL database server to run on Debian. To install MariaDB, run
+
+`sudo apt install mariadb-server`
