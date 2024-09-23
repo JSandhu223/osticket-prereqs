@@ -17,6 +17,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 - Debian
 - Apache
 - SQL
+- MariaDB
 
 <h2>Operating System Used </h2>
 
@@ -27,7 +28,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 - Debian `.iso` file
 - CPU that supports Intel Virtualization Technology or AMD-V
 - At least 2 GB of free RAM
-- 25 GB storage space
+- 20 GB storage space
 
 <h2>Installation Steps</h2>
 
