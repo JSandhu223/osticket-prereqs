@@ -111,7 +111,7 @@ When the VM has restarted, log in to your account created during the installatio
 
 <h3>Part 2 - Checking Updates</h3>
 
-Before installing any applications, it is best practice to check for updates for packages. Note that if you created the root user during installation we created a root user, our user account we logged in with won't have `sudo` permissions. To add ourselves to the list of `sudoers`, enter super user mode in the `Terminal` and enter the command `su`. Then navigate to `/etc`.
+Before installing any applications, it is best practice to check for updates for packages. Note that if you created the root user during installation, our user account we logged in with won't have `sudo` permissions. To add ourselves to the list of `sudoers`, enter super user mode in the `Terminal` and enter the command `su`. Then navigate to `/etc`.
 
 <img src="images/Add_Sudoer_1.png" height="60%" width="60%" />
 
@@ -182,3 +182,32 @@ We have now created the database that will store all information related to osTi
 
 <h3>Part 6 - Installing osTicket</h3>
 
+First, we need to navigate to the root directory of the Apache web document located at `/var/www/html`. This directory is where webpage content lives so that Apache can fetch it and serve it to the client. It is here that we will install osTicket. Go to [https://api.github.com/repos/osTicket/osTicket/releases/latest](https://api.github.com/repos/osTicket/osTicket/releases/latest) and download the free version to get the zip file. When downloaded, move the zip file to `/var/www/html`. For convenience, I will do this in a separate tab.
+
+<img src="images/move_zip_file.png" height="60%" width="60%" />
+
+As of this tutorial, the latest version of osTicket is **1.18.1**. Next, we go back to the `/var/www/html` directory and unzip the contents of the zip file by running
+
+`sudo unzip osTicket-v1.18.1.zip -d osTicket`
+
+This unzips the content into another folder called `osTicket`. Now that we have unzipped, we can delete the original zip file with the `rm` command. Next navigate to to the directory `osTicket/upload/include` and run
+
+`sudo cp ost-sampleconfig.php ost-config.php `
+
+This command copies the contents of the provided sample config file into a new file which we named `ost-config.php`.
+
+To allow Apache the proper permissions to access web files, we need to change the ownership of all files in the `osTicket` folder. Apache uses the special user and group name of `www-data`. To change the ownership of all files and folders within the `osTicket` folder, run
+
+`sudo chown -R www-data:www-data /var/www/html/osTicket/`
+
+If you see the output `ls -l`, it should show the owners as `www-data`.
+
+<img src="images/chown_result.png" height="60%" width="60%" />
+
+We also want to assign full rwx (read, write, execute) permissions to the 'www-data' user and group, while giving only rx (read and execute) permissions to everyone else. We can run
+s
+`sudo chmod -R 775 /var/www/html/osTicket/`
+
+For a better understanding of Linux file permissions, see this guide: [https://www.stationx.net/linux-file-permissions-cheat-sheet/](https://www.stationx.net/linux-file-permissions-cheat-sheet/)
+
+<img src="images/chmod_result.png" height="60%" width="60%" />
