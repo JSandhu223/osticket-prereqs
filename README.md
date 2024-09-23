@@ -160,13 +160,13 @@ PHP will be used to display content to the end-user and process requests to the 
 
 `sudo apt install php libapache2-mod-php php-mysql`
 
-To confirm that PHP was installed, run `php -v` to see the version of PHP. As of this tutorial, the version is 8.2.20.
+To confirm that PHP was installed, run `php -v` to see the version of PHP. As of this tutorial, the latest version is 8.2.20.
 
 <img src="images/PHP_VersionCheck.png" height="60%" width="60%" />
 
 <h3>Part 5 - Creating the Database</h3>
 
-We can create the database from command line. Type `sudo mariadb` and enter the following:
+We can create the database from the command line. Type `sudo mariadb` to open the mariaDB interpreter and enter the following SQL commands:
 
 ```
 CREATE DATABASE osticket;
@@ -174,7 +174,7 @@ GRANT ALL PRIVILEGES ON osticket.* TO osticket@localhost IDENTIFIED BY "Password
 FLUSH PRIVILEGES;
 ```
 
-To show all database schemas that exist, type `SHOW DATABASES`. We can see our `osticket` database is present along with some other default created databases.
+To show all database schemas that exist, type `SHOW DATABASES;`. We can see our `osticket` database is present along with some other default created databases.
 
 <img src="images/MariaDB_Show_Databases.png" height="60%" width="60%" />
 
@@ -182,7 +182,7 @@ We have now created the database that will store all information related to osTi
 
 <h3>Part 6 - Installing osTicket</h3>
 
-First, we need to navigate to the root directory of the Apache web document located at `/var/www/html`. This directory is where webpage content lives so that Apache can fetch it and serve it to the client. It is here that we will install osTicket. Go to [https://api.github.com/repos/osTicket/osTicket/releases/latest](https://api.github.com/repos/osTicket/osTicket/releases/latest) and download the free version to get the zip file. When downloaded, move the zip file to `/var/www/html`. For convenience, I will do this in a separate tab.
+First, we need to navigate to the root directory of the Apache web document located at `/var/www/html`. This directory is where webpage content lives so that Apache can fetch it and serve it to the client. It is here that we will install osTicket. Go to [https://osticket.com/download/](https://osticket.com/download/) and download the free version to get the zip file. When downloaded, move the zip file to `/var/www/html`. For convenience, I will do this in a separate tab.
 
 <img src="images/move_zip_file.png" height="60%" width="60%" />
 
@@ -190,7 +190,7 @@ As of this tutorial, the latest version of osTicket is **1.18.1**. Next, we go b
 
 `sudo unzip osTicket-v1.18.1.zip -d osTicket`
 
-This unzips the content into another folder called `osTicket`. Now that we have unzipped, we can delete the original zip file with the `rm` command. Next navigate to to the directory `osTicket/upload/include` and run
+This unzips the content into another folder called `osTicket`. Now that we have unzipped the zip file, we can delete it with the `rm` command. Next, navigate to to the directory `/var/www/html/osTicket/upload/include` and run
 
 `sudo cp ost-sampleconfig.php ost-config.php `
 
