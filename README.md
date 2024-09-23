@@ -211,3 +211,5 @@ s
 For a better understanding of Linux file permissions, see this guide: [https://www.stationx.net/linux-file-permissions-cheat-sheet/](https://www.stationx.net/linux-file-permissions-cheat-sheet/)
 
 <img src="images/chmod_result.png" height="60%" width="60%" />
+
+<h3>Part 7 - Configuring Apache</h3>
