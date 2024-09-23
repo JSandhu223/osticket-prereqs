@@ -163,3 +163,22 @@ PHP will be used to display content to the end-user and process requests to the 
 To confirm that PHP was installed, run `php -v` to see the version of PHP. As of this tutorial, the version is 8.2.20.
 
 <img src="images/PHP_VersionCheck.png" height="60%" width="60%" />
+
+<h3>Part 5 - Creating the Database</h3>
+
+We can create the database from command line. Type `sudo mariadb` and enter the following:
+
+```
+CREATE DATABASE osticket;
+GRANT ALL PRIVILEGES ON osticket.* TO osticket@localhost IDENTIFIED BY "Password1";
+FLUSH PRIVILEGES;
+```
+
+To show all database schemas that exist, type `SHOW DATABASES`. We can see our `osticket` database is present along with some other default created databases.
+
+<img src="images/MariaDB_Show_Databases.png" height="60%" width="60%" />
+
+We have now created the database that will store all information related to osTicket. To exit the MariaDB command line interpreter, type `EXIT;`. We will revisit the MariaDB interpreter later once we actually install and configure osTicket.
+
+<h3>Part 6 - Installing osTicket</h3>
+
