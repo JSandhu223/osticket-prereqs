@@ -214,3 +214,29 @@ For a better understanding of Linux file permissions, see this guide: [https://w
 <img src="images/chmod_result.png" height="60%" width="60%" />
 
 <h3>Part 7 - Configuring Apache</h3>
+
+We now need to connect Apache so that it can talk to osTicket. We can accomplish this with a virtual host config file. Navigate to `/etc/apache2/sites-available` and run `sudo touch osticket.conf`. This will create a file with with the name `osticket.conf`. Then using your favorite command line text editor, paste the following code snippet into the config file:
+
+```
+<VirtualHost *:80>
+ServerName osticket.helpdesk.com
+DocumentRoot /var/www/html/osTicket/upload
+
+<Directory /var/www/html/osTicket>
+AllowOverride All
+</Directory>
+
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+```
+
+Notice that the `ServerName` is set to `osticket.helpdesk.com`. This is the domain name we set and will allow us to access the ticketing system through port 80 (HTTP). After saving the file, we then need to enable the virtual host by running
+
+`sudo a2ensite rewrite`
+`sudo a2ensite osticket.conf`
+
+Reload Apache to finalize the changes.
+
+`sudo systemctl reload apache2`
