@@ -180,7 +180,7 @@ To show all database schemas that exist, type `SHOW DATABASES;`. We can see our 
 
 <img src="images/MariaDB_Show_Databases.png" height="60%" width="60%" />
 
-We have now created the database that will store all information related to osTicket. To exit the MariaDB command line interpreter, type `EXIT;`. We will revisit MariaDB once we install and configure osTicket.
+We have now created the database that will store all information related to osTicket. To exit the MariaDB command line interpreter, type `EXIT;`. We will revisit MariaDB in a coming lab when we create some users.
 
 <h3>Part 7 - Installing osTicket</h3>
 
@@ -282,4 +282,4 @@ As our final step, we need to change the file permissions of of osticket config 
 
 <img src="images/Change_Permissions_ostconfig.png" height="60%" width="60%" />
 
-Congratulations! You have now installed osTicket!
+Congratulations! You have now installed osTicket! For convenience, you can bookmark the osTicket URLs are the bottom of the installation completion page.
