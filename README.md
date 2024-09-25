@@ -131,6 +131,7 @@ To install Apache, run
 Once installed, we can enable and start the apache web server
 
 `sudo systemctl enable apache2`
+
 `sudo systemctl start apache2`
 
 To view the status of apache, we can run
@@ -155,17 +156,17 @@ We need a SQL database server to store information like user accounts, admin acc
 
 `sudo apt install mariadb-server`
 
-<h3>Part 4 - Installing PHP</h3>
+<h3>Part 5 - Installing PHP</h3>
 
-PHP will be used to display content to the end-user and process requests to the database server. To install PHP and its necessary dependencies, we can run
+PHP will be used to display content to the end-user and process requests to the database server. To install PHP and its necessary dependencies for osTicket, run
 
-`sudo apt install php libapache2-mod-php php-mysql`
+`sudo apt install apt install apache2 php php-cli php-common php-imap php-redis php-snmp php-xml php-zip php-mbstring php-curl php-mysqli php-gd php-intl php-apcu libapache2-mod-php unzip -y`
 
 To confirm that PHP was installed, run `php -v` to see the version of PHP. As of this tutorial, the latest version is 8.2.20.
 
 <img src="images/PHP_VersionCheck.png" height="60%" width="60%" />
 
-<h3>Part 5 - Creating the Database</h3>
+<h3>Part 6 - Creating the Database</h3>
 
 We can create the database from the command line. Type `sudo mariadb` to open the mariaDB interpreter and enter the following SQL commands:
 
@@ -179,9 +180,9 @@ To show all database schemas that exist, type `SHOW DATABASES;`. We can see our 
 
 <img src="images/MariaDB_Show_Databases.png" height="60%" width="60%" />
 
-We have now created the database that will store all information related to osTicket. To exit the MariaDB command line interpreter, type `EXIT;`. We will revisit the MariaDB interpreter later once we actually install and configure osTicket.
+We have now created the database that will store all information related to osTicket. To exit the MariaDB command line interpreter, type `EXIT;`. We will revisit MariaDB once we install and configure osTicket.
 
-<h3>Part 6 - Installing osTicket</h3>
+<h3>Part 7 - Installing osTicket</h3>
 
 First, we need to navigate to the root directory of the Apache web document located at `/var/www/html`. This directory is where webpage content lives so that Apache can fetch it and serve it to the client. It is here that we will install osTicket. Go to [https://osticket.com/download/](https://osticket.com/download/) and download the free version to get the zip file. When downloaded, move the zip file to `/var/www/html`. For convenience, I will do this in a separate tab.
 
@@ -206,20 +207,20 @@ If you see the output `ls -l`, it should show the owners as `www-data`.
 <img src="images/chown_result.png" height="60%" width="60%" />
 
 We also want to assign full rwx (read, write, execute) permissions to the 'www-data' user and group, while giving only rx (read and execute) permissions to everyone else. We can run
-s
+
 `sudo chmod -R 775 /var/www/html/osTicket/`
 
 For a better understanding of Linux file permissions, see this guide: [https://www.stationx.net/linux-file-permissions-cheat-sheet/](https://www.stationx.net/linux-file-permissions-cheat-sheet/)
 
 <img src="images/chmod_result.png" height="60%" width="60%" />
 
-<h3>Part 7 - Configuring Apache</h3>
+<h3>Part 8 - Configuring Apache</h3>
 
 We now need to connect Apache so that it can talk to osTicket. We can accomplish this with a virtual host config file. Navigate to `/etc/apache2/sites-available` and run `sudo touch osticket.conf`. This will create a file with with the name `osticket.conf`. Then using your favorite command line text editor, paste the following code snippet into the config file:
 
 ```
 <VirtualHost *:80>
-ServerName osticket.helpdesk.com
+ServerName myhelpdesk.com
 DocumentRoot /var/www/html/osTicket/upload
 
 <Directory /var/www/html/osTicket>
@@ -232,11 +233,29 @@ CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
 
-Notice that the `ServerName` is set to `osticket.helpdesk.com`. This is the domain name we set and will allow us to access the ticketing system through port 80 (HTTP). After saving the file, we then need to enable the virtual host by running
+Notice that the `ServerName` is set to `myhelpdesk.com`. This is the domain name we set and will allow us to access the ticketing system through port 80 (HTTP). After saving the file, we then need to enable this config by running
 
-`sudo a2ensite rewrite`
+`sudo a2enmod rewrite`
+
 `sudo a2ensite osticket.conf`
 
-Reload Apache to finalize the changes.
+Restart Apache to finalize the changes.
 
-`sudo systemctl reload apache2`
+`sudo systemctl restart apache2`
+
+Now, ff we try to connect to `myhelpdesk.com` through our web browser, we'll get an error indicating the site can't be reached. This is because we still need to map the IP address of our machine to this domain name. To find your IP address, run
+
+`ip address`
+
+<img src="images/IP_Address.png" height="60%" width="60%" />
+
+ Then navigate to the `/etc` directory and open the `hosts` file with sudo permissions with a text editor. We can then map our IP address to our domain name as follows:
+
+ <img src="images/hosts_file.png" height="60%" width="60%" />
+
+ We can now access osTicket by visiting `myhelpdesk.com` in our browser. You should now be greeted with this screen:
+
+  <img src="images/osticket_setup_page.png" />
+
+  <h3>Part 9 - Configuring osTicket</h3>
+  
