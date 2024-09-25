@@ -15,8 +15,8 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 
 - Oracle VM VirtualBox
 - Debian
+- Terminal
 - Apache
-- SQL
 - MariaDB
 
 <h2>Operating System Used </h2>
