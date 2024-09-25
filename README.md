@@ -249,13 +249,37 @@ Now, ff we try to connect to `myhelpdesk.com` through our web browser, we'll get
 
 <img src="images/IP_Address.png" height="60%" width="60%" />
 
- Then navigate to the `/etc` directory and open the `hosts` file with sudo permissions with a text editor. We can then map our IP address to our domain name as follows:
+Then navigate to the `/etc` directory and open the `hosts` file with sudo permissions with a text editor. We can then map our IP address to our domain name as follows:
 
- <img src="images/hosts_file.png" height="60%" width="60%" />
+<img src="images/hosts_file.png" height="60%" width="60%" />
 
- We can now access osTicket by visiting `myhelpdesk.com` in our browser. You should now be greeted with this screen:
+We are now able to access osTicket through our custom domain name!
 
-  <img src="images/osticket_setup_page.png" />
 
-  <h3>Part 9 - Configuring osTicket</h3>
-  
+<h3>Part 9 - Configuring osTicket</h3>
+
+Open a web browser and visit `myhelpdesk.com` to begin setting up osTicket. You be greeted with the following page:
+
+<img src="images/osticket_setup_page.png" />
+
+Notice that we have all the PHP features ready to use since we installed all the necessary dependencies in `Part 5`. Click `Continue` at the bottom to proceed to the basic installation page. For system settings, feel free to enter what you wish.
+
+<img src="images/osticket_setup_system_settings.png" height="60%" width="60%" />
+
+When creating the admin user, we will set `Password1` as the password.
+
+<img src="images/osticket_setup_admin_user.png" height="60%" width="60%" />
+
+Under the database settings, make sure to put `osticket` as the database name, since this was the name of the database we created in `Part 6`. We will set for password field to `Password1` as that was the password we when creating the database in `Part 6`.
+
+<img src="images/osticket_setup_database_settings.png" height="60%" width="60%" />
+
+Click `Install Now` to complete the configuration of osTicket. Upon completion, you will be greeted with this page indicating a successful installation.
+
+<img src="images/osticket_completed_installation.png" />
+
+As our final step, we need to change the file permissions of of osticket config file as indicated above. Note that `chmod 0644` is equivalent to `chmod 644`. The '0' indicates octal notation.
+
+<img src="images/Change_Permissions_ostconfig.png" height="60%" width="60%" />
+
+Congratulations! You have now installed osTicket!
